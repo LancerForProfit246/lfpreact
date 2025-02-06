@@ -1,5 +1,11 @@
 import React from 'react';
-import './App.css'; // Add your custom styles
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Bio from './Bio.jsx';
+import Portfolio from './Portfolio.jsx';
+import About from './About.jsx';
+import './App.css';
+
+
 function Nav() {
   return (
     <nav>
@@ -8,14 +14,15 @@ function Nav() {
           LancerForProfit
         </div>
         <div className="nav-links">
-          <a href="about.html">About</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="contact.html">Contact</a>
+        <Link to="/about">About</Link>
+          <Link to="/portfolio">Portfolio</Link>
+          <Link to="/bio">Bio</Link>
         </div>
       </div>
     </nav>
   );
 }
+
 
 function Hero() {
   return (
@@ -29,7 +36,8 @@ function Hero() {
   );
 }
 
-function About() {
+
+function Aboutdiv() {
   return (
     <section className="section" id="about">
       <h2>About</h2>
@@ -39,7 +47,8 @@ function About() {
   );
 }
 
-function Portfolio() {
+
+function Portfoliodiv() {
   return (
     <section className="section" id="portfolio">
       <h2>Our Portfolio</h2>
@@ -56,6 +65,7 @@ function Portfolio() {
           </div>
         </div>
 
+
         <div className="portfolio-item">
           <div className="portfolio-content">
             <h3>Healthcare App</h3>
@@ -67,6 +77,7 @@ function Portfolio() {
             </div>
           </div>
         </div>
+
 
         <div className="portfolio-item">
           <div className="portfolio-content">
@@ -84,6 +95,7 @@ function Portfolio() {
   );
 }
 
+
 function Footer() {
   return (
     <footer id="contact">
@@ -95,16 +107,32 @@ function Footer() {
   );
 }
 
+
+
+
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Nav />
-      <Hero />
-      <About />
-      <Portfolio />
-      <Footer />
-    </div>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <Aboutdiv />
+            <Portfoliodiv />
+            <Footer />
+          </>
+        }/>
+        <Route path="/about" element={<About />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/bio" element={<Bio />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
+
 export default App;
+
+
+
